@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -17,760 +18,861 @@
             --gradient-2: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+```
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--primary-dark);
-            color: var(--text-light);
-            overflow-x: hidden;
-        }
+    body {
+        font-family: 'Inter', sans-serif;
+        background: var(--primary-dark);
+        color: var(--text-light);
+        overflow-x: hidden;
+    }
 
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 1.5rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            background: rgba(10, 14, 26, 0.9);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
+    /* Navigation */
+    nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        padding: 1.5rem 5%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 1000;
+        background: rgba(10, 14, 26, 0.9);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
 
-        .logo {
-            font-family: 'Oswald', sans-serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            background: var(--gradient-2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
+    .logo {
+        font-family: 'Oswald', sans-serif;
+        font-size: 1.8rem;
+        font-weight: 700;
+        background: var(--gradient-2);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
 
+    .nav-links {
+        display: flex;
+        gap: 2.5rem;
+        list-style: none;
+    }
+
+    .nav-links a {
+        color: var(--text-light);
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s;
+        position: relative;
+    }
+
+    .nav-links a::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--accent-cyan);
+        transition: width 0.3s;
+    }
+
+    .nav-links a:hover::after {
+        width: 100%;
+    }
+
+    .nav-links a:hover {
+        color: var(--accent-cyan);
+    }
+
+    /* FIX 9 — Burger menu mobile */
+    .burger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        padding: 5px;
+        background: none;
+        border: none;
+    }
+
+    .burger span {
+        display: block;
+        width: 25px;
+        height: 2px;
+        background: var(--text-light);
+        border-radius: 2px;
+        transition: all 0.3s;
+    }
+
+    .burger.open span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+    }
+
+    .burger.open span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .burger.open span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+    }
+
+    .mobile-menu {
+        display: none;
+        position: fixed;
+        top: 73px;
+        left: 0;
+        width: 100%;
+        background: rgba(10, 14, 26, 0.98);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        z-index: 999;
+        padding: 1.5rem 5%;
+        flex-direction: column;
+        gap: 1.2rem;
+    }
+
+    .mobile-menu.open {
+        display: flex;
+    }
+
+    .mobile-menu a {
+        color: var(--text-light);
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 1.1rem;
+        padding: 0.5rem 0;
+        border-bottom: 1px solid rgba(255,255,255,0.07);
+        transition: color 0.3s;
+    }
+
+    .mobile-menu a:last-child {
+        border-bottom: none;
+    }
+
+    .mobile-menu a:hover {
+        color: var(--accent-cyan);
+    }
+
+    /* Hero Section */
+    .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        background: var(--gradient-1);
+        overflow: hidden;
+    }
+
+    .hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: 
+            radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+            radial-gradient(circle at 80% 80%, rgba(6, 182, 212, 0.1) 0%, transparent 50%);
+        pointer-events: none;
+    }
+
+    .hero-content {
+        text-align: center;
+        z-index: 2;
+        padding: 2rem;
+        max-width: 900px;
+    }
+
+    .hero-badge {
+        display: inline-block;
+        padding: 0.5rem 1.5rem;
+        background: rgba(59, 130, 246, 0.2);
+        border: 1px solid var(--accent-blue);
+        border-radius: 50px;
+        font-size: 0.9rem;
+        color: var(--accent-cyan);
+        margin-bottom: 2rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+
+    .hero h1 {
+        font-family: 'Oswald', sans-serif;
+        font-size: clamp(3rem, 8vw, 6rem);
+        font-weight: 700;
+        line-height: 1.1;
+        margin-bottom: 1.5rem;
+        text-transform: uppercase;
+    }
+
+    .hero h1 span {
+        background: var(--gradient-2);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .slogan {
+        font-size: 1.5rem;
+        color: var(--text-gray);
+        margin-bottom: 3rem;
+        font-style: italic;
+        position: relative;
+        display: inline-block;
+    }
+
+    .slogan::before,
+    .slogan::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        width: 50px;
+        height: 1px;
+        background: var(--accent-cyan);
+    }
+
+    .slogan::before {
+        right: calc(100% + 20px);
+    }
+
+    .slogan::after {
+        left: calc(100% + 20px);
+    }
+
+    .cta-buttons {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .btn {
+        padding: 1rem 2.5rem;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    .btn-primary {
+        background: var(--gradient-2);
+        color: white;
+        box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+    }
+
+    .btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 40px rgba(59, 130, 246, 0.4);
+    }
+
+    .btn-secondary {
+        background: transparent;
+        color: var(--text-light);
+        border: 2px solid rgba(255,255,255,0.2);
+    }
+
+    .btn-secondary:hover {
+        border-color: var(--accent-cyan);
+        color: var(--accent-cyan);
+        transform: translateY(-3px);
+    }
+
+    /* Coach Section */
+    .coach-section {
+        padding: 8rem 5%;
+        background: var(--secondary-dark);
+        position: relative;
+    }
+
+    .section-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+    }
+
+    .coach-image {
+        position: relative;
+    }
+
+    /* FIX 7 — lazy loading sur l'image */
+    .coach-image img {
+        width: 100%;
+        border-radius: 20px;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        border: 2px solid rgba(59, 130, 246, 0.3);
+    }
+
+    .coach-image::before {
+        content: '';
+        position: absolute;
+        top: -20px;
+        left: -20px;
+        right: 20px;
+        bottom: 20px;
+        border: 2px solid var(--accent-cyan);
+        border-radius: 20px;
+        z-index: -1;
+        opacity: 0.5;
+    }
+
+    .coach-content h2 {
+        font-family: 'Oswald', sans-serif;
+        font-size: 3rem;
+        margin-bottom: 1.5rem;
+        text-transform: uppercase;
+    }
+
+    .coach-content h2 span {
+        color: var(--accent-cyan);
+    }
+
+    .coach-content p {
+        color: var(--text-gray);
+        line-height: 1.8;
+        margin-bottom: 2rem;
+        font-size: 1.1rem;
+    }
+
+    .stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+        margin-top: 3rem;
+    }
+
+    .stat-item {
+        text-align: center;
+        padding: 1.5rem;
+        background: rgba(255,255,255,0.05);
+        border-radius: 12px;
+        border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .stat-number {
+        font-family: 'Oswald', sans-serif;
+        font-size: 2.5rem;
+        color: var(--accent-cyan);
+        font-weight: 700;
+    }
+
+    .stat-label {
+        color: var(--text-gray);
+        font-size: 0.9rem;
+        margin-top: 0.5rem;
+    }
+
+    /* Services Section */
+    .services {
+        padding: 8rem 5%;
+        background: var(--primary-dark);
+    }
+
+    .section-header {
+        text-align: center;
+        margin-bottom: 4rem;
+    }
+
+    .section-header h2 {
+        font-family: 'Oswald', sans-serif;
+        font-size: 3rem;
+        text-transform: uppercase;
+        margin-bottom: 1rem;
+    }
+
+    .section-header p {
+        color: var(--text-gray);
+        font-size: 1.2rem;
+    }
+
+    .services-grid {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+    }
+
+    .service-card {
+        background: var(--secondary-dark);
+        padding: 2.5rem;
+        border-radius: 16px;
+        border: 1px solid rgba(255,255,255,0.1);
+        transition: all 0.3s;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .service-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: var(--gradient-2);
+        transform: scaleX(0);
+        transition: transform 0.3s;
+    }
+
+    .service-card:hover::before {
+        transform: scaleX(1);
+    }
+
+    .service-card:hover {
+        transform: translateY(-10px);
+        border-color: var(--accent-blue);
+        box-shadow: 0 20px 40px rgba(59, 130, 246, 0.2);
+    }
+
+    .service-icon {
+        width: 60px;
+        height: 60px;
+        background: var(--gradient-2);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.8rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .service-card h3 {
+        font-family: 'Oswald', sans-serif;
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        text-transform: uppercase;
+    }
+
+    .service-card p {
+        color: var(--text-gray);
+        line-height: 1.6;
+    }
+
+    /* Pricing Section */
+    .pricing {
+        padding: 8rem 5%;
+        background: var(--secondary-dark);
+    }
+
+    .pricing-grid {
+        max-width: 1000px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+    }
+
+    .pricing-card {
+        background: var(--primary-dark);
+        padding: 2.5rem;
+        border-radius: 16px;
+        border: 2px solid rgba(255,255,255,0.1);
+        text-align: center;
+        transition: all 0.3s;
+        position: relative;
+    }
+
+    .pricing-card.featured {
+        border-color: var(--accent-blue);
+        transform: scale(1.05);
+        box-shadow: 0 20px 40px rgba(59, 130, 246, 0.3);
+    }
+
+    .pricing-card.featured::before {
+        content: 'POPULAIRE';
+        position: absolute;
+        top: -12px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--gradient-2);
+        padding: 0.5rem 1.5rem;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+    }
+
+    .pricing-card:hover {
+        transform: translateY(-5px);
+        border-color: var(--accent-cyan);
+    }
+
+    .pricing-card.featured:hover {
+        transform: scale(1.05) translateY(-5px);
+    }
+
+    .pricing-name {
+        font-family: 'Oswald', sans-serif;
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+        text-transform: uppercase;
+        color: var(--text-gray);
+    }
+
+    .pricing-price {
+        font-family: 'Oswald', sans-serif;
+        font-size: 3rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+    }
+
+    .pricing-price span {
+        font-size: 1rem;
+        color: var(--text-gray);
+    }
+
+    .pricing-features {
+        list-style: none;
+        margin: 2rem 0;
+        text-align: left;
+    }
+
+    .pricing-features li {
+        padding: 0.5rem 0;
+        color: var(--text-gray);
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .pricing-features li:last-child {
+        border-bottom: none;
+    }
+
+    /* Booking Section */
+    .booking {
+        padding: 8rem 5%;
+        background: var(--primary-dark);
+        position: relative;
+    }
+
+    .booking-container {
+        max-width: 800px;
+        margin: 0 auto;
+        background: var(--secondary-dark);
+        padding: 3rem;
+        border-radius: 24px;
+        border: 1px solid rgba(255,255,255,0.1);
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: var(--text-light);
+        font-weight: 500;
+    }
+
+    /* FIX 8 — textarea hérite de la police */
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        width: 100%;
+        padding: 1rem;
+        background: var(--primary-dark);
+        border: 2px solid rgba(255,255,255,0.1);
+        border-radius: 8px;
+        color: var(--text-light);
+        font-size: 1rem;
+        font-family: 'Inter', sans-serif;
+        transition: all 0.3s;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+        outline: none;
+        border-color: var(--accent-blue);
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+
+    .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+    }
+
+    .date-time-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        margin-top: 0.5rem;
+    }
+
+    .time-slot {
+        padding: 0.8rem;
+        background: var(--primary-dark);
+        border: 2px solid rgba(255,255,255,0.1);
+        border-radius: 8px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s;
+        font-size: 0.9rem;
+        user-select: none;
+    }
+
+    .time-slot:hover:not(.disabled) {
+        border-color: var(--accent-blue);
+        background: rgba(59, 130, 246, 0.1);
+    }
+
+    .time-slot.selected {
+        background: var(--gradient-2);
+        border-color: var(--accent-cyan);
+        color: white;
+    }
+
+    .time-slot.disabled {
+        opacity: 0.3;
+        cursor: not-allowed;
+    }
+
+    /* FIX 1 — Erreur créneau visible */
+    .time-error {
+        display: none;
+        color: #f87171;
+        font-size: 0.85rem;
+        margin-top: 0.5rem;
+    }
+
+    .time-error.visible {
+        display: block;
+    }
+
+    .submit-btn {
+        width: 100%;
+        padding: 1.2rem;
+        background: var(--gradient-2);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-top: 1rem;
+        font-family: 'Inter', sans-serif;
+    }
+
+    .submit-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4);
+    }
+
+    .submit-btn:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none;
+    }
+
+    /* Success Modal */
+    /* FIX 6 — role dialog + focus trap */
+    .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.8);
+        z-index: 2000;
+        justify-content: center;
+        align-items: center;
+        backdrop-filter: blur(5px);
+        overflow: hidden;
+    }
+
+    .modal.active {
+        display: flex;
+    }
+
+    .modal-content {
+        background: var(--secondary-dark);
+        padding: 3rem;
+        border-radius: 20px;
+        text-align: center;
+        max-width: 400px;
+        width: 90%;
+        border: 2px solid var(--accent-cyan);
+        animation: modalPop 0.3s ease;
+        position: relative;
+        z-index: 1;
+    }
+
+    @keyframes modalPop {
+        0% { transform: scale(0.8); opacity: 0; }
+        100% { transform: scale(1); opacity: 1; }
+    }
+
+    .modal-icon {
+        width: 80px;
+        height: 80px;
+        background: var(--gradient-2);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.5rem;
+        margin: 0 auto 1.5rem;
+    }
+
+    .modal h3 {
+        font-family: 'Oswald', sans-serif;
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+    }
+
+    .modal p {
+        color: var(--text-gray);
+        margin-bottom: 2rem;
+    }
+
+    /* Footer */
+    footer {
+        background: var(--primary-dark);
+        padding: 3rem 5%;
+        text-align: center;
+        border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .social-links {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .social-links a {
+        width: 50px;
+        height: 50px;
+        background: var(--secondary-dark);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--text-light);
+        text-decoration: none;
+        transition: all 0.3s;
+        border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .social-links a:hover {
+        background: var(--gradient-2);
+        transform: translateY(-5px);
+        border-color: var(--accent-cyan);
+    }
+
+    .footer-text {
+        color: var(--text-gray);
+        font-size: 0.9rem;
+    }
+
+    .instagram-handle {
+        color: var(--accent-cyan);
+        font-weight: 600;
+        margin-top: 0.5rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
         .nav-links {
+            display: none;
+        }
+
+        /* FIX 9 — Afficher le burger */
+        .burger {
             display: flex;
-            gap: 2.5rem;
-            list-style: none;
         }
 
-        .nav-links a {
-            color: var(--text-light);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-            position: relative;
+        .section-container {
+            grid-template-columns: 1fr;
         }
 
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--accent-cyan);
-            transition: width 0.3s;
+        .coach-image::before {
+            display: none;
         }
 
-        .nav-links a:hover::after {
-            width: 100%;
+        .stats {
+            grid-template-columns: 1fr;
         }
 
-        .nav-links a:hover {
-            color: var(--accent-cyan);
+        .form-row {
+            grid-template-columns: 1fr;
         }
 
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            background: var(--gradient-1);
-            overflow: hidden;
+        .date-time-grid {
+            grid-template-columns: repeat(2, 1fr);
         }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(6, 182, 212, 0.1) 0%, transparent 50%);
-            pointer-events: none;
-        }
-
-        .hero-content {
-            text-align: center;
-            z-index: 2;
-            padding: 2rem;
-            max-width: 900px;
-        }
-
-        .hero-badge {
-            display: inline-block;
-            padding: 0.5rem 1.5rem;
-            background: rgba(59, 130, 246, 0.2);
-            border: 1px solid var(--accent-blue);
-            border-radius: 50px;
-            font-size: 0.9rem;
-            color: var(--accent-cyan);
-            margin-bottom: 2rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .hero h1 {
-            font-family: 'Oswald', sans-serif;
-            font-size: clamp(3rem, 8vw, 6rem);
-            font-weight: 700;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            text-transform: uppercase;
-        }
-
-        .hero h1 span {
-            background: var(--gradient-2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .slogan {
-            font-size: 1.5rem;
-            color: var(--text-gray);
-            margin-bottom: 3rem;
-            font-style: italic;
-            position: relative;
-            display: inline-block;
+        .pricing-card.featured {
+            transform: none;
         }
 
         .slogan::before,
         .slogan::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            width: 50px;
-            height: 1px;
-            background: var(--accent-cyan);
-        }
-
-        .slogan::before {
-            right: calc(100% + 20px);
-        }
-
-        .slogan::after {
-            left: calc(100% + 20px);
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 1rem 2.5rem;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .btn-primary {
-            background: var(--gradient-2);
-            color: white;
-            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(59, 130, 246, 0.4);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--text-light);
-            border: 2px solid rgba(255,255,255,0.2);
-        }
-
-        .btn-secondary:hover {
-            border-color: var(--accent-cyan);
-            color: var(--accent-cyan);
-            transform: translateY(-3px);
-        }
-
-        /* Coach Section */
-        .coach-section {
-            padding: 8rem 5%;
-            background: var(--secondary-dark);
-            position: relative;
-        }
-
-        .section-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .coach-image {
-            position: relative;
-        }
-
-        .coach-image img {
-            width: 100%;
-            border-radius: 20px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            border: 2px solid rgba(59, 130, 246, 0.3);
-        }
-
-        .coach-image::before {
-            content: '';
-            position: absolute;
-            top: -20px;
-            left: -20px;
-            right: 20px;
-            bottom: 20px;
-            border: 2px solid var(--accent-cyan);
-            border-radius: 20px;
-            z-index: -1;
-            opacity: 0.5;
-        }
-
-        .coach-content h2 {
-            font-family: 'Oswald', sans-serif;
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            text-transform: uppercase;
-        }
-
-        .coach-content h2 span {
-            color: var(--accent-cyan);
-        }
-
-        .coach-content p {
-            color: var(--text-gray);
-            line-height: 1.8;
-            margin-bottom: 2rem;
-            font-size: 1.1rem;
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 1.5rem;
-            background: rgba(255,255,255,0.05);
-            border-radius: 12px;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .stat-number {
-            font-family: 'Oswald', sans-serif;
-            font-size: 2.5rem;
-            color: var(--accent-cyan);
-            font-weight: 700;
-        }
-
-        .stat-label {
-            color: var(--text-gray);
-            font-size: 0.9rem;
-            margin-top: 0.5rem;
-        }
-
-        /* Services Section */
-        .services {
-            padding: 8rem 5%;
-            background: var(--primary-dark);
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .section-header h2 {
-            font-family: 'Oswald', sans-serif;
-            font-size: 3rem;
-            text-transform: uppercase;
-            margin-bottom: 1rem;
-        }
-
-        .section-header p {
-            color: var(--text-gray);
-            font-size: 1.2rem;
-        }
-
-        .services-grid {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-
-        .service-card {
-            background: var(--secondary-dark);
-            padding: 2.5rem;
-            border-radius: 16px;
-            border: 1px solid rgba(255,255,255,0.1);
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: var(--gradient-2);
-            transform: scaleX(0);
-            transition: transform 0.3s;
-        }
-
-        .service-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--accent-blue);
-            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.2);
-        }
-
-        .service-icon {
-            width: 60px;
-            height: 60px;
-            background: var(--gradient-2);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .service-card h3 {
-            font-family: 'Oswald', sans-serif;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-        }
-
-        .service-card p {
-            color: var(--text-gray);
-            line-height: 1.6;
-        }
-
-        /* Pricing Section */
-        .pricing {
-            padding: 8rem 5%;
-            background: var(--secondary-dark);
-        }
-
-        .pricing-grid {
-            max-width: 1000px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-
-        .pricing-card {
-            background: var(--primary-dark);
-            padding: 2.5rem;
-            border-radius: 16px;
-            border: 2px solid rgba(255,255,255,0.1);
-            text-align: center;
-            transition: all 0.3s;
-            position: relative;
-        }
-
-        .pricing-card.featured {
-            border-color: var(--accent-blue);
-            transform: scale(1.05);
-            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.3);
-        }
-
-        .pricing-card.featured::before {
-            content: 'POPULAIRE';
-            position: absolute;
-            top: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--gradient-2);
-            padding: 0.5rem 1.5rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
-
-        .pricing-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent-cyan);
-        }
-
-        .pricing-card.featured:hover {
-            transform: scale(1.05) translateY(-5px);
-        }
-
-        .pricing-name {
-            font-family: 'Oswald', sans-serif;
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            color: var(--text-gray);
-        }
-
-        .pricing-price {
-            font-family: 'Oswald', sans-serif;
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-
-        .pricing-price span {
-            font-size: 1rem;
-            color: var(--text-gray);
-        }
-
-        .pricing-features {
-            list-style: none;
-            margin: 2rem 0;
-            text-align: left;
-        }
-
-        .pricing-features li {
-            padding: 0.5rem 0;
-            color: var(--text-gray);
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .pricing-features li:last-child {
-            border-bottom: none;
-        }
-
-        /* Booking Section */
-        .booking {
-            padding: 8rem 5%;
-            background: var(--primary-dark);
-            position: relative;
-        }
-
-        .booking-container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: var(--secondary-dark);
-            padding: 3rem;
-            border-radius: 24px;
-            border: 1px solid rgba(255,255,255,0.1);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: var(--text-light);
-            font-weight: 500;
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 1rem;
-            background: var(--primary-dark);
-            border: 2px solid rgba(255,255,255,0.1);
-            border-radius: 8px;
-            color: var(--text-light);
-            font-size: 1rem;
-            transition: all 0.3s;
-        }
-
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--accent-blue);
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-        }
-
-        .date-time-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-            margin-top: 0.5rem;
-        }
-
-        .time-slot {
-            padding: 0.8rem;
-            background: var(--primary-dark);
-            border: 2px solid rgba(255,255,255,0.1);
-            border-radius: 8px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-size: 0.9rem;
-        }
-
-        .time-slot:hover {
-            border-color: var(--accent-blue);
-            background: rgba(59, 130, 246, 0.1);
-        }
-
-        .time-slot.selected {
-            background: var(--gradient-2);
-            border-color: var(--accent-cyan);
-            color: white;
-        }
-
-        .time-slot.disabled {
-            opacity: 0.3;
-            cursor: not-allowed;
-        }
-
-        .submit-btn {
-            width: 100%;
-            padding: 1.2rem;
-            background: var(--gradient-2);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-top: 1rem;
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4);
-        }
-
-        .submit-btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        /* Success Modal */
-        .modal {
             display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.8);
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
-            backdrop-filter: blur(5px);
         }
+    }
 
-        .modal.active {
-            display: flex;
-        }
+    /* Animations */
+    .fade-in {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.6s ease;
+    }
 
-        .modal-content {
-            background: var(--secondary-dark);
-            padding: 3rem;
-            border-radius: 20px;
-            text-align: center;
-            max-width: 400px;
-            border: 2px solid var(--accent-cyan);
-            animation: modalPop 0.3s ease;
-        }
+    .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
 
-        @keyframes modalPop {
-            0% { transform: scale(0.8); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
-        }
+    /* Loading Spinner */
+    .spinner {
+        display: none;
+        width: 20px;
+        height: 20px;
+        border: 3px solid rgba(255,255,255,0.3);
+        border-radius: 50%;
+        border-top-color: white;
+        animation: spin 1s ease-in-out infinite;
+        margin-left: 10px;
+        vertical-align: middle;
+    }
 
-        .modal-icon {
-            width: 80px;
-            height: 80px;
-            background: var(--gradient-2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5rem;
-            margin: 0 auto 1.5rem;
-        }
+    @keyframes spin {
+        to { transform: rotate(360deg); }
+    }
 
-        .modal h3 {
-            font-family: 'Oswald', sans-serif;
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-        }
+    .submit-btn.loading .spinner {
+        display: inline-block;
+    }
 
-        .modal p {
-            color: var(--text-gray);
-            margin-bottom: 2rem;
-        }
+    .submit-btn.loading .btn-text {
+        opacity: 0.7;
+    }
+</style>
+```
 
-        /* Footer */
-        footer {
-            background: var(--primary-dark);
-            padding: 3rem 5%;
-            text-align: center;
-            border-top: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .social-links a {
-            width: 50px;
-            height: 50px;
-            background: var(--secondary-dark);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-light);
-            text-decoration: none;
-            transition: all 0.3s;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .social-links a:hover {
-            background: var(--gradient-2);
-            transform: translateY(-5px);
-            border-color: var(--accent-cyan);
-        }
-
-        .footer-text {
-            color: var(--text-gray);
-            font-size: 0.9rem;
-        }
-
-        .instagram-handle {
-            color: var(--accent-cyan);
-            font-weight: 600;
-            margin-top: 0.5rem;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .section-container {
-                grid-template-columns: 1fr;
-            }
-
-            .coach-image::before {
-                display: none;
-            }
-
-            .stats {
-                grid-template-columns: 1fr;
-            }
-
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-
-            .date-time-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .pricing-card.featured {
-                transform: none;
-            }
-
-            .slogan::before,
-            .slogan::after {
-                display: none;
-            }
-        }
-
-        /* Animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Loading Spinner */
-        .spinner {
-            display: none;
-            width: 20px;
-            height: 20px;
-            border: 3px solid rgba(255,255,255,0.3);
-            border-radius: 50%;
-            border-top-color: white;
-            animation: spin 1s ease-in-out infinite;
-            margin-left: 10px;
-            vertical-align: middle;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        .submit-btn.loading .spinner {
-            display: inline-block;
-        }
-
-        .submit-btn.loading .btn-text {
-            opacity: 0.7;
-        }
-    </style>
 </head>
 <body>
     <!-- Navigation -->
@@ -783,354 +885,461 @@
             <li><a href="#tarifs">Tarifs</a></li>
             <li><a href="#reservation" class="btn-primary" style="padding: 0.5rem 1.5rem; font-size: 0.9rem;">Réserver</a></li>
         </ul>
+        <!-- FIX 9 — Burger button -->
+        <button class="burger" id="burgerBtn" aria-label="Ouvrir le menu" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero" id="accueil">
-        <div class="hero-content">
-            <div class="hero-badge">@chosenoneperf</div>
-            <h1>Coaching <span>Privé</span></h1>
-            <p class="slogan">Ta progression, notre mission.</p>
-            <div class="cta-buttons">
-                <button class="btn btn-primary" onclick="scrollToBooking()">Réserver une séance</button>
-                <button class="btn btn-secondary" onclick="document.getElementById('coach').scrollIntoView({behavior: 'smooth'})">Découvrir</button>
-            </div>
-        </div>
-    </section>
+```
+<!-- FIX 9 — Mobile menu -->
+<div class="mobile-menu" id="mobileMenu" role="navigation" aria-label="Menu mobile">
+    <a href="#accueil" onclick="closeMobileMenu()">Accueil</a>
+    <a href="#coach" onclick="closeMobileMenu()">Le Coach</a>
+    <a href="#services" onclick="closeMobileMenu()">Services</a>
+    <a href="#tarifs" onclick="closeMobileMenu()">Tarifs</a>
+    <a href="#reservation" onclick="closeMobileMenu()">Réserver</a>
+</div>
 
-    <!-- Coach Section -->
-    <section class="coach-section" id="coach">
-        <div class="section-container">
-            <div class="coach-image fade-in">
-                <img src="https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=800&q=80" alt="Coach de boxe">
-            </div>
-            <div class="coach-content fade-in">
-                <h2>Votre <span>Coach</span></h2>
-                <p>Passionné de boxe anglaise depuis plus de 10 ans, je mets mon expertise au service de votre progression. Que vous soyez débutant ou confirmé, chaque séance est adaptée à vos objectifs et votre niveau.</p>
-                <p>Ma méthode allie technique, condition physique et mental de fer. Parce que la boxe n'est pas qu'un sport, c'est un mode de vie.</p>
-                <div class="stats">
-                    <div class="stat-item">
-                        <div class="stat-number">10+</div>
-                        <div class="stat-label">Années d'exp.</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">500+</div>
-                        <div class="stat-label">Boxeurs coachés</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">100%</div>
-                        <div class="stat-label">Passion</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section class="services" id="services">
-        <div class="section-header fade-in">
-            <h2>Nos Services</h2>
-            <p>Des programmes adaptés à tous les niveaux</p>
-        </div>
-        <div class="services-grid">
-            <div class="service-card fade-in">
-                <div class="service-icon">🥊</div>
-                <h3>Remise en forme</h3>
-                <p>Programme complet alliant cardio et musculation pour retrouver la forme physique et mental.</p>
-            </div>
-            <div class="service-card fade-in">
-                <div class="service-icon">🎯</div>
-                <h3>Initiation à la boxe</h3>
-                <p>Apprenez les bases de la boxe anglaise : garde, déplacements, coups de poing et défense.</p>
-            </div>
-            <div class="service-card fade-in">
-                <div class="service-icon">⚡</div>
-                <h3>Perfectionnement technique</h3>
-                <p>Affinez votre technique, travaillez vos combos et devenez plus efficace sur le ring.</p>
-            </div>
-            <div class="service-card fade-in">
-                <div class="service-icon">🔥</div>
-                <h3>Perte de poids</h3>
-                <p>Sessions intensives pour brûler des calories et atteindre vos objectifs de poids.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pricing Section -->
-    <section class="pricing" id="tarifs">
-        <div class="section-header fade-in">
-            <h2>Nos Tarifs</h2>
-            <p>Choisissez la formule qui vous convient</p>
-        </div>
-        <div class="pricing-grid">
-            <div class="pricing-card fade-in">
-                <div class="pricing-name">Solo</div>
-                <div class="pricing-price">20€<span>/séance</span></div>
-                <ul class="pricing-features">
-                    <li>✓ Séance individuelle 1h</li>
-                    <li>✓ Programme personnalisé</li>
-                    <li>✓ Conseils nutritionnels</li>
-                </ul>
-                <button class="btn btn-secondary" onclick="selectPack('solo')" style="width: 100%;">Choisir</button>
-            </div>
-            <div class="pricing-card featured fade-in">
-                <div class="pricing-name">Duo</div>
-                <div class="pricing-price">15€<span>/pers</span></div>
-                <ul class="pricing-features">
-                    <li>✓ Séance en binôme 1h</li>
-                    <li>✓ Motivation partagée</li>
-                    <li>✓ Exercices sparring léger</li>
-                </ul>
-                <button class="btn btn-primary" onclick="selectPack('duo')" style="width: 100%;">Choisir</button>
-            </div>
-            <div class="pricing-card fade-in">
-                <div class="pricing-name">Groupe</div>
-                <div class="pricing-price">10€<span>/pers</span></div>
-                <ul class="pricing-features">
-                    <li>✓ Jusqu'à 4 personnes</li>
-                    <li>✓ Ambiance dynamique</li>
-                    <li>✓ Circuit training</li>
-                </ul>
-                <button class="btn btn-secondary" onclick="selectPack('groupe')" style="width: 100%;">Choisir</button>
-            </div>
-        </div>
-        <div style="max-width: 1000px; margin: 3rem auto 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem;">
-            <div class="pricing-card fade-in">
-                <div class="pricing-name">Pack 5 Séances</div>
-                <div class="pricing-price">95€</div>
-                <ul class="pricing-features">
-                    <li>✓ 5 séances individuelles</li>
-                    <li>✓ Économisez 5€</li>
-                    <li>✓ Validité 2 mois</li>
-                </ul>
-                <button class="btn btn-secondary" onclick="selectPack('pack5')" style="width: 100%;">Choisir</button>
-            </div>
-            <div class="pricing-card fade-in">
-                <div class="pricing-name">Pack 10 Séances</div>
-                <div class="pricing-price">180€</div>
-                <ul class="pricing-features">
-                    <li>✓ 10 séances individuelles</li>
-                    <li>✓ Économisez 20€</li>
-                    <li>✓ Validité 3 mois</li>
-                </ul>
-                <button class="btn btn-secondary" onclick="selectPack('pack10')" style="width: 100%;">Choisir</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Booking Section -->
-    <section class="booking" id="reservation">
-        <div class="section-header fade-in">
-            <h2>Réserver votre séance</h2>
-            <p>Prise de rendez-vous en privé</p>
-        </div>
-        <div class="booking-container fade-in">
-            <form id="bookingForm">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="prenom">Prénom *</label>
-                        <input type="text" id="prenom" name="prenom" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="nom">Nom *</label>
-                        <input type="text" id="nom" name="nom" required>
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="email">Email *</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="telephone">Téléphone *</label>
-                        <input type="tel" id="telephone" name="telephone" required>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="pack">Formule choisie *</label>
-                    <select id="pack" name="pack" required>
-                        <option value="">Sélectionnez une formule</option>
-                        <option value="solo">Solo - 20€/séance</option>
-                        <option value="duo">Duo - 15€/personne</option>
-                        <option value="groupe">Groupe - 10€/personne</option>
-                        <option value="pack5">Pack 5 séances - 95€</option>
-                        <option value="pack10">Pack 10 séances - 180€</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="date">Date souhaitée *</label>
-                    <input type="date" id="date" name="date" required min="">
-                </div>
-
-                <div class="form-group">
-                    <label>Créneau horaire *</label>
-                    <div class="date-time-grid" id="timeSlots">
-                        <div class="time-slot" data-time="09:00">09:00</div>
-                        <div class="time-slot" data-time="10:30">10:30</div>
-                        <div class="time-slot" data-time="14:00">14:00</div>
-                        <div class="time-slot" data-time="15:30">15:30</div>
-                        <div class="time-slot" data-time="17:00">17:00</div>
-                        <div class="time-slot" data-time="18:30">18:30</div>
-                        <div class="time-slot" data-time="20:00">20:00</div>
-                        <div class="time-slot" data-time="21:30">21:30</div>
-                    </div>
-                    <input type="hidden" id="heure" name="heure" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="message">Message (optionnel)</label>
-                    <textarea id="message" name="message" rows="3" placeholder="Précisez vos objectifs ou questions..."></textarea>
-                </div>
-
-                <button type="submit" class="submit-btn" id="submitBtn">
-                    <span class="btn-text">Confirmer la réservation</span>
-                    <span class="spinner"></span>
-                </button>
-            </form>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="social-links">
-            <a href="https://instagram.com/chosenoneperf" target="_blank" title="Instagram">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                </svg>
-            </a>
-        </div>
-        <p class="footer-text">© 2024 Chosen One Perf - Coaching Privé Boxe Anglaise</p>
-        <p class="instagram-handle">@chosenoneperf</p>
-    </footer>
-
-    <!-- Success Modal -->
-    <div class="modal" id="successModal">
-        <div class="modal-content">
-            <div class="modal-icon">✓</div>
-            <h3>Réservation confirmée !</h3>
-            <p>Votre demande de réservation a bien été enregistrée. Je vous contacterai rapidement pour confirmer votre séance.</p>
-            <button class="btn btn-primary" onclick="closeModal()" style="width: 100%;">Fermer</button>
+<!-- Hero Section -->
+<section class="hero" id="accueil">
+    <div class="hero-content">
+        <div class="hero-badge">@chosenoneperf</div>
+        <h1>Coaching <span>Privé</span></h1>
+        <p class="slogan">Ta progression, notre mission.</p>
+        <div class="cta-buttons">
+            <button class="btn btn-primary" onclick="scrollToBooking()">Réserver une séance</button>
+            <button class="btn btn-secondary" onclick="document.getElementById('coach').scrollIntoView({behavior: 'smooth'})">Découvrir</button>
         </div>
     </div>
+</section>
 
-    <script>
-        // Set minimum date to today
-        document.getElementById('date').min = new Date().toISOString().split('T')[0];
+<!-- Coach Section -->
+<section class="coach-section" id="coach">
+    <div class="section-container">
+        <div class="coach-image fade-in">
+            <!-- FIX 7 — lazy loading -->
+            <img src="https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?w=800&q=80" alt="Coach de boxe" loading="lazy">
+        </div>
+        <div class="coach-content fade-in">
+            <h2>Votre <span>Coach</span></h2>
+            <p>Passionné de boxe anglaise depuis plus de 10 ans, je mets mon expertise au service de votre progression. Que vous soyez débutant ou confirmé, chaque séance est adaptée à vos objectifs et votre niveau.</p>
+            <p>Ma méthode allie technique, condition physique et mental de fer. Parce que la boxe n'est pas qu'un sport, c'est un mode de vie.</p>
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-number">10+</div>
+                    <div class="stat-label">Années d'exp.</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Boxeurs coachés</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Passion</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-        // Time slot selection
-        const timeSlots = document.querySelectorAll('.time-slot');
-        const heureInput = document.getElementById('heure');
+<!-- Services Section -->
+<section class="services" id="services">
+    <div class="section-header fade-in">
+        <h2>Nos Services</h2>
+        <p>Des programmes adaptés à tous les niveaux</p>
+    </div>
+    <div class="services-grid">
+        <div class="service-card fade-in">
+            <div class="service-icon">🥊</div>
+            <h3>Remise en forme</h3>
+            <p>Programme complet alliant cardio et musculation pour retrouver la forme physique et mental.</p>
+        </div>
+        <div class="service-card fade-in">
+            <div class="service-icon">🎯</div>
+            <h3>Initiation à la boxe</h3>
+            <p>Apprenez les bases de la boxe anglaise : garde, déplacements, coups de poing et défense.</p>
+        </div>
+        <div class="service-card fade-in">
+            <div class="service-icon">⚡</div>
+            <h3>Perfectionnement technique</h3>
+            <p>Affinez votre technique, travaillez vos combos et devenez plus efficace sur le ring.</p>
+        </div>
+        <div class="service-card fade-in">
+            <div class="service-icon">🔥</div>
+            <h3>Perte de poids</h3>
+            <p>Sessions intensives pour brûler des calories et atteindre vos objectifs de poids.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Pricing Section -->
+<section class="pricing" id="tarifs">
+    <div class="section-header fade-in">
+        <h2>Nos Tarifs</h2>
+        <p>Choisissez la formule qui vous convient</p>
+    </div>
+    <div class="pricing-grid">
+        <div class="pricing-card fade-in">
+            <div class="pricing-name">Solo</div>
+            <div class="pricing-price">20€<span>/séance</span></div>
+            <ul class="pricing-features">
+                <li>✓ Séance individuelle 1h</li>
+                <li>✓ Programme personnalisé</li>
+                <li>✓ Conseils nutritionnels</li>
+            </ul>
+            <button class="btn btn-secondary" onclick="selectPack('solo')" style="width: 100%;">Choisir</button>
+        </div>
+        <div class="pricing-card featured fade-in">
+            <div class="pricing-name">Duo</div>
+            <div class="pricing-price">15€<span>/pers</span></div>
+            <ul class="pricing-features">
+                <li>✓ Séance en binôme 1h</li>
+                <li>✓ Motivation partagée</li>
+                <li>✓ Exercices sparring léger</li>
+            </ul>
+            <button class="btn btn-primary" onclick="selectPack('duo')" style="width: 100%;">Choisir</button>
+        </div>
+        <div class="pricing-card fade-in">
+            <div class="pricing-name">Groupe</div>
+            <div class="pricing-price">10€<span>/pers</span></div>
+            <ul class="pricing-features">
+                <li>✓ Jusqu'à 4 personnes</li>
+                <li>✓ Ambiance dynamique</li>
+                <li>✓ Circuit training</li>
+            </ul>
+            <button class="btn btn-secondary" onclick="selectPack('groupe')" style="width: 100%;">Choisir</button>
+        </div>
+    </div>
+    <div style="max-width: 1000px; margin: 3rem auto 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem;">
+        <div class="pricing-card fade-in">
+            <div class="pricing-name">Pack 5 Séances</div>
+            <div class="pricing-price">95€</div>
+            <ul class="pricing-features">
+                <li>✓ 5 séances individuelles</li>
+                <li>✓ Économisez 5€</li>
+                <li>✓ Validité 2 mois</li>
+            </ul>
+            <button class="btn btn-secondary" onclick="selectPack('pack5')" style="width: 100%;">Choisir</button>
+        </div>
+        <div class="pricing-card fade-in">
+            <div class="pricing-name">Pack 10 Séances</div>
+            <div class="pricing-price">180€</div>
+            <ul class="pricing-features">
+                <li>✓ 10 séances individuelles</li>
+                <li>✓ Économisez 20€</li>
+                <li>✓ Validité 3 mois</li>
+            </ul>
+            <button class="btn btn-secondary" onclick="selectPack('pack10')" style="width: 100%;">Choisir</button>
+        </div>
+    </div>
+</section>
+
+<!-- Booking Section -->
+<section class="booking" id="reservation">
+    <div class="section-header fade-in">
+        <h2>Réserver votre séance</h2>
+        <p>Prise de rendez-vous en privé</p>
+    </div>
+    <div class="booking-container fade-in">
+        <form id="bookingForm" novalidate>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="prenom">Prénom *</label>
+                    <input type="text" id="prenom" name="prenom" required>
+                </div>
+                <div class="form-group">
+                    <label for="nom">Nom *</label>
+                    <input type="text" id="nom" name="nom" required>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="telephone">Téléphone *</label>
+                    <input type="tel" id="telephone" name="telephone" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="pack">Formule choisie *</label>
+                <select id="pack" name="pack" required>
+                    <option value="">Sélectionnez une formule</option>
+                    <option value="solo">Solo - 20€/séance</option>
+                    <option value="duo">Duo - 15€/personne</option>
+                    <option value="groupe">Groupe - 10€/personne</option>
+                    <option value="pack5">Pack 5 séances - 95€</option>
+                    <option value="pack10">Pack 10 séances - 180€</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="date">Date souhaitée *</label>
+                <input type="date" id="date" name="date" required>
+            </div>
+
+            <div class="form-group">
+                <label>Créneau horaire *</label>
+                <div class="date-time-grid" id="timeSlots" role="group" aria-label="Créneaux horaires disponibles">
+                    <div class="time-slot" data-time="09:00" role="button" tabindex="0" aria-pressed="false">09:00</div>
+                    <div class="time-slot" data-time="10:30" role="button" tabindex="0" aria-pressed="false">10:30</div>
+                    <div class="time-slot" data-time="14:00" role="button" tabindex="0" aria-pressed="false">14:00</div>
+                    <div class="time-slot" data-time="15:30" role="button" tabindex="0" aria-pressed="false">15:30</div>
+                    <div class="time-slot" data-time="17:00" role="button" tabindex="0" aria-pressed="false">17:00</div>
+                    <div class="time-slot" data-time="18:30" role="button" tabindex="0" aria-pressed="false">18:30</div>
+                    <div class="time-slot" data-time="20:00" role="button" tabindex="0" aria-pressed="false">20:00</div>
+                    <div class="time-slot" data-time="21:30" role="button" tabindex="0" aria-pressed="false">21:30</div>
+                </div>
+                <!-- FIX 1 — Message d'erreur visible pour le créneau -->
+                <div class="time-error" id="timeError" role="alert">Veuillez sélectionner un créneau horaire.</div>
+            </div>
+
+            <div class="form-group">
+                <label for="message">Message (optionnel)</label>
+                <textarea id="message" name="message" rows="3" placeholder="Précisez vos objectifs ou questions..."></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn" id="submitBtn">
+                <span class="btn-text">Confirmer la réservation</span>
+                <span class="spinner"></span>
+            </button>
+        </form>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="social-links">
+        <a href="https://instagram.com/chosenoneperf" target="_blank" rel="noopener noreferrer" title="Instagram">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            </svg>
+        </a>
+    </div>
+    <!-- FIX 10 — Année dynamique -->
+    <p class="footer-text">© <span id="currentYear"></span> Chosen One Perf - Coaching Privé Boxe Anglaise</p>
+    <p class="instagram-handle">@chosenoneperf</p>
+</footer>
+
+<!-- Success Modal -->
+<!-- FIX 6 — role="dialog" + aria-modal -->
+<div class="modal" id="successModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalDesc">
+    <div class="modal-content">
+        <div class="modal-icon" aria-hidden="true">✓</div>
+        <h3 id="modalTitle">Réservation confirmée !</h3>
+        <p id="modalDesc">Votre demande de réservation a bien été enregistrée. Je vous contacterai rapidement pour confirmer votre séance.</p>
+        <button class="btn btn-primary" id="modalCloseBtn" onclick="closeModal()" style="width: 100%;">Fermer</button>
+    </div>
+</div>
+
+<script>
+    // FIX 10 — Année dynamique
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+    // FIX 2 — Date minimum en heure locale (pas UTC)
+    function getTodayLocal() {
+        const now = new Date();
+        const yyyy = now.getFullYear();
+        const mm = String(now.getMonth() + 1).padStart(2, '0');
+        const dd = String(now.getDate()).padStart(2, '0');
+        return `${yyyy}-${mm}-${dd}`;
+    }
+    document.getElementById('date').min = getTodayLocal();
+
+    // Time slot selection
+    const timeSlots = document.querySelectorAll('.time-slot');
+
+    function selectTimeSlot(slot) {
+        if (slot.classList.contains('disabled')) return;
+        timeSlots.forEach(s => {
+            s.classList.remove('selected');
+            s.setAttribute('aria-pressed', 'false');
+        });
+        slot.classList.add('selected');
+        slot.setAttribute('aria-pressed', 'true');
+        // FIX 1 — Cacher le message d'erreur quand un créneau est choisi
+        document.getElementById('timeError').classList.remove('visible');
+    }
+
+    timeSlots.forEach(slot => {
+        slot.addEventListener('click', () => selectTimeSlot(slot));
+        // Accessibilité clavier
+        slot.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                selectTimeSlot(slot);
+            }
+        });
+    });
+
+    function getSelectedTime() {
+        const selected = document.querySelector('.time-slot.selected');
+        return selected ? selected.dataset.time : null;
+    }
+
+    // FIX 5 — selectPack avec scroll après mise à jour du DOM
+    function selectPack(pack) {
+        document.getElementById('pack').value = pack;
+        // Laisser le DOM se mettre à jour avant le scroll
+        requestAnimationFrame(() => {
+            scrollToBooking();
+        });
+    }
+
+    function scrollToBooking() {
+        document.getElementById('reservation').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Form submission — FIX 1 : validation créneau propre
+    document.getElementById('bookingForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const selectedTime = getSelectedTime();
+
+        if (!selectedTime) {
+            const timeError = document.getElementById('timeError');
+            timeError.classList.add('visible');
+            timeError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            return;
+        }
+
+        // Validation des champs natifs
+        if (!this.checkValidity()) {
+            this.reportValidity();
+            return;
+        }
+
+        const submitBtn = document.getElementById('submitBtn');
+        submitBtn.classList.add('loading');
+        submitBtn.disabled = true;
+
+        // Simulate API call
+        setTimeout(() => {
+            submitBtn.classList.remove('loading');
+            submitBtn.disabled = false;
+            openModal();
+            this.reset();
+            timeSlots.forEach(s => {
+                s.classList.remove('selected');
+                s.setAttribute('aria-pressed', 'false');
+            });
+        }, 1500);
+    });
+
+    // FIX 6 — Modal avec focus trap
+    function openModal() {
+        const modal = document.getElementById('successModal');
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        // Focus sur le bouton fermer
+        setTimeout(() => {
+            document.getElementById('modalCloseBtn').focus();
+        }, 50);
+    }
+
+    function closeModal() {
+        const modal = document.getElementById('successModal');
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    // Fermer modal sur clic extérieur
+    document.getElementById('successModal').addEventListener('click', function(e) {
+        if (e.target === this) closeModal();
+    });
+
+    // Fermer modal avec Échap
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && document.getElementById('successModal').classList.contains('active')) {
+            closeModal();
+        }
+    });
+
+    // Intersection Observer pour animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // Smooth scroll pour la nav
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+
+    // FIX 3 — Désactiver créneaux passés avec comparaison locale correcte
+    document.getElementById('date').addEventListener('change', function() {
+        const todayStr = getTodayLocal();
+        const isToday = this.value === todayStr;
+        const currentHour = new Date().getHours();
+        const currentMinutes = new Date().getMinutes();
 
         timeSlots.forEach(slot => {
-            slot.addEventListener('click', function() {
-                if (this.classList.contains('disabled')) return;
-                
-                timeSlots.forEach(s => s.classList.remove('selected'));
-                this.classList.add('selected');
-                heureInput.value = this.dataset.time;
-            });
-        });
+            slot.classList.remove('disabled', 'selected');
+            slot.setAttribute('aria-pressed', 'false');
 
-        // Pre-select pack from pricing buttons
-        function selectPack(pack) {
-            document.getElementById('pack').value = pack;
-            scrollToBooking();
-        }
+            if (isToday) {
+                const [slotHour, slotMin] = slot.dataset.time.split(':').map(Number);
+                const slotTotalMinutes = slotHour * 60 + slotMin;
+                const nowTotalMinutes = currentHour * 60 + currentMinutes;
 
-        function scrollToBooking() {
-            document.getElementById('reservation').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        // Form submission
-        document.getElementById('bookingForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            if (!heureInput.value) {
-                alert('Veuillez sélectionner un créneau horaire');
-                return;
-            }
-
-            const submitBtn = document.getElementById('submitBtn');
-            submitBtn.classList.add('loading');
-            submitBtn.disabled = true;
-
-            // Simulate API call
-            setTimeout(() => {
-                submitBtn.classList.remove('loading');
-                submitBtn.disabled = false;
-                document.getElementById('successModal').classList.add('active');
-                this.reset();
-                timeSlots.forEach(s => s.classList.remove('selected'));
-                heureInput.value = '';
-            }, 1500);
-        });
-
-        function closeModal() {
-            document.getElementById('successModal').classList.remove('active');
-        }
-
-        // Close modal on outside click
-        document.getElementById('successModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeModal();
+                if (slotTotalMinutes <= nowTotalMinutes) {
+                    slot.classList.add('disabled');
+                    slot.setAttribute('aria-disabled', 'true');
+                } else {
+                    slot.setAttribute('aria-disabled', 'false');
+                }
             }
         });
+    });
 
-        // Intersection Observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+    // FIX 9 — Burger menu
+    const burgerBtn = document.getElementById('burgerBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
+    burgerBtn.addEventListener('click', () => {
+        const isOpen = mobileMenu.classList.toggle('open');
+        burgerBtn.classList.toggle('open', isOpen);
+        burgerBtn.setAttribute('aria-expanded', isOpen);
+    });
 
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
+    function closeMobileMenu() {
+        mobileMenu.classList.remove('open');
+        burgerBtn.classList.remove('open');
+        burgerBtn.setAttribute('aria-expanded', 'false');
+    }
 
-        // Smooth scroll for navigation
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
-        });
+    // Fermer le menu mobile en cliquant ailleurs
+    document.addEventListener('click', (e) => {
+        if (!burgerBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
+            closeMobileMenu();
+        }
+    });
+</script>
+```
 
-        // Disable past time slots for today
-        document.getElementById('date').addEventListener('change', function() {
-            const selectedDate = new Date(this.value);
-            const today = new Date();
-            today.setHours(0,0,0,0);
-            
-            timeSlots.forEach(slot => {
-                slot.classList.remove('disabled', 'selected');
-                
-                if (selectedDate.getTime() === today.getTime()) {
-                    const slotTime = parseInt(slot.dataset.time.split(':')[0]);
-                    const currentHour = new Date().getHours();
-                    
-                    if (slotTime <= currentHour) {
-                        slot.classList.add('disabled');
-                    }
-                }
-            });
-            
-            heureInput.value = '';
-        });
-    </script>
 </body>
 </html>
